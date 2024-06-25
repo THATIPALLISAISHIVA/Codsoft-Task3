@@ -227,7 +227,7 @@ const BlogDetails = () => {
       <div className="max-w-2xl w-full bg-white rounded-lg shadow-md overflow-hidden mt-8 mx-4 p-4">
         <h2 className="text-4xl font-bold mb-4 heading">{blog.title}</h2>
         <p className="text-gray-500 mb-4 ">{`By ${blog.author} on ${formatDate(blog.date)}`}</p>
-        <p className="text-gray-700 mb-4 text-2xl"><ReactMarkdown>{blog.excerpt}</ReactMarkdown></p>
+        <p className="text-gray-700 mb-4 text-xl  md:text-2xl"><ReactMarkdown>{blog.excerpt}</ReactMarkdown></p>
         <div className="flex items-center mb-4">
           <button onClick={handleLike} className="text-red-500 text-xl flex items-center">
             {isLiked ? <FaHeart /> : <FaRegHeart />}

@@ -1,4 +1,4 @@
-// src/pages/HomePage.js
+
 import React, { useEffect, useState } from 'react';
 import BlogCard from '../components/BlogCard';
 import { collection, getDocs } from 'firebase/firestore';
