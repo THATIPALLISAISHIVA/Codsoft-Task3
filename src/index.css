@@ -1,13 +1,27 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* App.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.form {
+  background: rgba(19, 35, 47, 0.9);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.field-wrap label {
+  transition: all 0.25s ease;
+}
+
+.field-wrap label.active {
+  transform: translateY(50px);
+  left: 2px;
+  font-size: 14px;
+  color: white;
+}
+
+.field-wrap label.highlight {
+  color: white;
+}
+body{
+  background-color:#111827;
 }
