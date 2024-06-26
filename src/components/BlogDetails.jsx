@@ -223,7 +223,7 @@ const BlogDetails = () => {
   };
 
   return (
-    <div className="flex justify-center  min-h-screen ">
+    <div className="flex justify-center  min-h-screen">
       <div className="max-w-2xl w-full bg-white rounded-lg shadow-md overflow-hidden mt-8 mx-4 p-4">
         <h2 className="text-4xl font-bold mb-4 heading">{blog.title}</h2>
         <p className="text-gray-500 mb-4 ">{`By ${blog.author} on ${formatDate(blog.date)}`}</p>
