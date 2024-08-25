@@ -52,6 +52,8 @@ const Profile = () => {
     await updateDoc(blogRef, blogData);
     fetchUserBlogs(user.uid);
   };
+  
+  
 
   const handleDeleteBlog = async (id) => {
     const blogRef = doc(db, 'blogs', id);

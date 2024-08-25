@@ -1,18 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import './fontfamily.css'
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../firebase';  // Adjust the path if needed
 
-const BlogCard = ({ id, title, author, date, excerpt, onEdit, onDelete, isDashboard }) => {
+const BlogCard = ({ id, title, author, date, excerpt, onDelete, isDashboard }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [updatedBlog, setUpdatedBlog] = useState({ title, author, excerpt });
+  const [currentTitle, setCurrentTitle] = useState(title);
+  const [currentAuthor, setCurrentAuthor] = useState(author);
+  const [currentExcerpt, setCurrentExcerpt] = useState(excerpt);
   const navigate = useNavigate();
 
-  const handleEdit = () => {
-    // Ensure all fields are filled before calling onEdit
+  useEffect(() => {
+    setUpdatedBlog({ title, author, excerpt });
+  }, [title, author, excerpt]);
+
+  const handleEdit = async () => {
     if (updatedBlog.title && updatedBlog.author && updatedBlog.excerpt) {
-      onEdit(id, updatedBlog);
-      setIsEditing(false);
+      try {
+        const blogRef = doc(db, 'blogs', id);
+        await updateDoc(blogRef, {
+          ...updatedBlog,
+          date: new Date() // Update the timestamp
+        });
+
+        // Update the local state to display the edited content immediately
+        setCurrentTitle(updatedBlog.title);
+        setCurrentAuthor(updatedBlog.author);
+        setCurrentExcerpt(updatedBlog.excerpt);
+
+        setIsEditing(false);
+      } catch (error) {
+        console.error("Error updating blog: ", error);
+      }
     } else {
       console.error('All fields must be filled');
     }
@@ -53,11 +74,11 @@ const BlogCard = ({ id, title, author, date, excerpt, onEdit, onDelete, isDashbo
           </>
         ) : (
           <>
-            <h2 className="text-2xl font-bold mb-2 heading">{title}</h2>
-            <p className="text-gray-700 mb-4">{excerpt}...</p>
+            <h2 className="text-2xl font-bold mb-2 heading">{currentTitle}</h2>
+            <p className="text-gray-700 mb-4">{currentExcerpt}...</p>
             <div className="flex justify-between items-center mb-4">
               <div className="text-sm text-gray-600">
-                <p className="font-semibold">{author}</p>
+                <p className="font-semibold">{currentAuthor}</p>
               </div>
               <div className="text-sm text-gray-600">
                 <p>{formatDate(date)}</p>
