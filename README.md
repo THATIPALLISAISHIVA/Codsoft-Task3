@@ -44,8 +44,8 @@ Follow these steps to set up the project locally:
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/saishiva-blog.git
-    cd saishiva-blog
+    git clone https://github.com/THATIPALLISAISHIVA/Codsoft-Task3.git
+    cd Codsoft-Task3
     ```
 
 2.  **Install dependencies:**
